@@ -1,0 +1,42 @@
+grammar mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.MyDsl.mydsl"
+
+Package:
+	'package' name=ID '{' members+=Member* '}';
+
+Member:
+	Package | User;
+
+User:
+	Class | Enum;
+
+Class:
+	'class' name=ID ('(' super=[Class|FQN] ')')? ':' attributes+=Attribute*;
+
+Attribute:
+	name=ID ':' type=Type;
+
+Enum:
+	'enum' name=ID ':' literals+=Literal+;
+
+Literal:
+	name=ID '=' symbol=STRING;
+
+FQN:
+	ID ('.' ID)*;
+
+Type:
+	Builtin | Ref | List | Set;
+
+Builtin:
+	t='str' | t='bool';
+
+Ref:
+	t=[User|FQN];
+
+List:
+	'List' '(' t=[User|FQN] ')';
+
+Set:
+	'Set' '(' t=[User|FQN] ')';

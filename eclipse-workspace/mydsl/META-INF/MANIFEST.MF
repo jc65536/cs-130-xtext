@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: mydsl
+Bundle-ManifestVersion: 2
+Bundle-Name: mydsl
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: mydsl; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.16.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Export-Package: mydsl.services,
+ mydsl.myDsl.util,
+ mydsl.myDsl.impl,
+ mydsl.scoping,
+ mydsl.generator,
+ mydsl.myDsl,
+ mydsl.validation,
+ mydsl,
+ mydsl.serializer,
+ mydsl.parser.antlr,
+ mydsl.parser.antlr.internal
+Import-Package: org.apache.log4j

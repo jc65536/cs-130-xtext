@@ -1,0 +1,7 @@
+.metadata
+*.class
+*.java
+*.jar
+bin
+src-gen
+xtend-gen

@@ -1,0 +1,60 @@
+@startuml
+!pragma useIntermediatePackages false
+class xtext.terminals.ID {
+}
+class xtext.terminals.STRING {
+}
+class xtext.terminals.FQN {
+}
+class xtext.nonterminals.Package {
+}
+class xtext.nonterminals.Member {
+}
+class xtext.nonterminals.User {
+}
+class xtext.nonterminals.Class {
+}
+class xtext.nonterminals.Enum {
+}
+class xtext.nonterminals.Attribute {
+}
+class xtext.nonterminals.Literal {
+}
+class xtext.nonterminals.Type {
+}
+class xtext.nonterminals.Builtin {
+}
+enum xtext.terminals.StrBool {
+STR: str {static}
+BOOL: bool {static}
+}
+class xtext.nonterminals.Ref {
+}
+class xtext.nonterminals.List {
+}
+class xtext.nonterminals.Set {
+}
+xtext.nonterminals.Package *-- "name" xtext.terminals.ID
+xtext.nonterminals.Package *-- "members [*] {ordered}" xtext.nonterminals.Member
+xtext.nonterminals.Member <|-- xtext.nonterminals.Package
+xtext.nonterminals.Member <|-- xtext.nonterminals.User
+xtext.nonterminals.Class *-- "name" xtext.terminals.ID
+xtext.nonterminals.Class o-- "super" xtext.nonterminals.Class
+xtext.nonterminals.Class *-- "attributes [*] {ordered}" xtext.nonterminals.Attribute
+xtext.nonterminals.User <|-- xtext.nonterminals.Class
+xtext.nonterminals.Enum *-- "name" xtext.terminals.ID
+xtext.nonterminals.Enum *-- "literals [*] {unique}" xtext.nonterminals.Literal
+xtext.nonterminals.User <|-- xtext.nonterminals.Enum
+xtext.nonterminals.Attribute *-- "name" xtext.terminals.ID
+xtext.nonterminals.Attribute *-- "type" xtext.nonterminals.Type
+xtext.nonterminals.Literal *-- "name" xtext.terminals.ID
+xtext.nonterminals.Literal *-- "symbol" xtext.terminals.STRING
+xtext.nonterminals.Builtin *-- "t" xtext.terminals.StrBool
+xtext.nonterminals.Type <|-- xtext.nonterminals.Builtin
+xtext.nonterminals.Ref o-- "t" xtext.nonterminals.User
+xtext.nonterminals.Type <|-- xtext.nonterminals.Ref
+xtext.nonterminals.List o-- "t" xtext.nonterminals.User
+xtext.nonterminals.Type <|-- xtext.nonterminals.Gist
+xtext.nonterminals.Set o-- "t" xtext.nonterminals.User
+xtext.nonterminals.Type <|-- xtext.nonterminals.Get
+@enduml
